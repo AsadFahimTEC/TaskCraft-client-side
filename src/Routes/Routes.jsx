@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import Service from "../Service/Service";
 import AllService from "../SingleService/AllService";
 import SingleService from "../SingleService/SingleService";
+import Register from "../Registration/Registration";
+import Login from "../Login/Login"
 
 
 
@@ -26,9 +28,9 @@ import SingleService from "../SingleService/SingleService";
         {
             path: "/service/:service_id",
             element: (
-              // <PrivateRoute>
+              <PrivateRoute>
                 <Service></Service>
-              // </PrivateRoute>
+               </PrivateRoute>
             ),
             loader: () => fetch("/services.json"),
           },
@@ -36,18 +38,18 @@ import SingleService from "../SingleService/SingleService";
             path: "/services",
             
             element: ( 
-            // <PrivateRoute>
+            <PrivateRoute>
             <AllService></AllService>
-            // </PrivateRoute>
+             </PrivateRoute>
             ),
             loader: () => fetch("/AllService.json"),
           },
           {
             path: "/services/:service_id",
             element: (
-              // <PrivateRoute>
+              <PrivateRoute>
             <SingleService></SingleService>
-            // </PrivateRoute>
+            </PrivateRoute>
             ),
             loader: () => fetch("/AllService.json"),
           },
@@ -63,7 +65,15 @@ import SingleService from "../SingleService/SingleService";
         {
             path:"/contactus",
             element: <ContactUs></ContactUs>
-        }
+        },
+        {
+          path: "/login",
+          element: <Login></Login>,
+        },
+        {
+          path: "/register",
+          element: <Register></Register>,
+        },
     ],
     },
   ]);

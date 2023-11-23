@@ -1,11 +1,11 @@
 
 import logo from "../assets/logo (2).png";
-import {  useState } from "react";
-// import { AuthContext } from "../Hook/AuthProvider";
+import {  useContext, useState } from "react";
+import { AuthContext } from "../Hook/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
-//   const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -16,10 +16,10 @@ const NavBar = () => {
     setIsDropdownOpen(false);
   };
 
-//   // sign out a user
-//   const handleLogOut = () => {
-//     logOut().then().catch();
-//   };
+  // sign out a user
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
 
   const navLinks = (
     <>
@@ -73,7 +73,7 @@ const NavBar = () => {
         <ul className="menu font-avenir menu-horizontal px-1">{navLinks}</ul>
       </div>
 
-      {/* <div className="navbar-end">
+      <div className="navbar-end">
         {user?.displayName ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -150,7 +150,7 @@ const NavBar = () => {
             </button>
           </Link>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
