@@ -1,0 +1,30 @@
+[
+    {
+        "service_id": 1,
+        "service_name": "HR Administration Services",
+        "service_description": "Effortlessly handle HR tasks such as payroll processing, benefits administration, and employee record management with our comprehensive HR administration services.",
+        "service_image_url": "https://i.postimg.cc/1X2MsJkN/photo-1531535807748-218331acbcb4-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-crop-faces.jpg",
+        "service_price": "$9.99"
+    },
+    {
+        "service_id": 2,
+        "service_name": "Training and Development Support",
+        "service_description": "Foster a culture of continuous learning. Our training and development services help you design, track, and optimize employee learning programs for professional growth.",
+        "service_image_url": "https://i.postimg.cc/HLzqd1Bc/photo-1542744173-8e7e53415bb0-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-crop-faces-edg.jpg",
+        "service_price": "Free"
+    },
+    {
+        "service_id": 3,
+        "service_name": "Employee Communication Platforms",
+        "service_description": "Enhance internal communication and collaboration with our employee communication platforms, fostering a connected and informed workforce.",
+        "service_image_url": "https://i.postimg.cc/7PQ8c4Wf/photo-1552581234-26160f608093-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-crop-faces-edg.jpg",
+        "service_price": "$19.99/month"
+    },
+    {
+        "service_id": 4,
+        "service_name": "Performance Excellence Solutions",
+        "service_description": "Drive employee performance and engagement with our performance management tools, including goal setting, performance reviews, and continuous feedback loops.",
+        "service_image_url": "https://i.postimg.cc/hPzL88mf/premium-photo-1667516764926-c4ac7e9a14cd-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-cro.jpg",
+        "service_price": "Free"
+    }
+]
