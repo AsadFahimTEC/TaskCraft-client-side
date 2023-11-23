@@ -39,7 +39,7 @@ const NavBar = () => {
     <div className="navbar bg-green-200 text-blue-900">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost text-red-400 lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost text-red-500 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -57,7 +57,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu font-avenir menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-yellow-500 rounded-box w-52"
+            className="menu font-avenir menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-400 rounded-box w-52"
           >
             {navLinks}
           </ul>
