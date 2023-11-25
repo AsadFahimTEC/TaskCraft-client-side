@@ -15,28 +15,28 @@ const SingleServiceDetail = ({ service }) => {
     service_price,
   } = service || {};
 
-  const handleBookService = () => {
-    fetch("https://b8-a11-server-side.vercel.app/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(service),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: "success",
-            text: "Product Booked Successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
-          navigate('/book');
-        }
-      });
-  };
+  // const handleBookService = () => {
+  //   fetch("https://b8-a11-server-side.vercel.app/bookings", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(service),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.insertedId) {
+  //         Swal.fire({
+  //           title: "success",
+  //           text: "Product Booked Successfully",
+  //           icon: "success",
+  //           confirmButtonText: "Cool",
+  //         });
+  //         navigate('/book');
+  //       }
+  //     });
+  // };
 
   return (
     <div className="mt-6 mr-6 ml-6">
@@ -63,12 +63,12 @@ const SingleServiceDetail = ({ service }) => {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <button
+            {/* <button
               onClick={handleBookService}
               className="bg-[red] hover:bg-[green] font-avenir text-[white] rounded px-5 py-2"
             >
               Book Now
-            </button>
+            </button> */}
             <p>{service_area}</p>
           </div>
         </div>

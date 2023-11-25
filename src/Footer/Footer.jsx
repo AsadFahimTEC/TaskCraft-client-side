@@ -16,7 +16,7 @@ const Footer = () => {
             Home
           </Link>
           <Link className="hover:text-gray-900" to="/services">
-            Services
+            Packages
           </Link>
           <Link className="hover:text-gray-900" to="/media">
             Media
