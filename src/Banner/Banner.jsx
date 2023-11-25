@@ -16,24 +16,24 @@ const Sliders = () => {
   const slides = [
     {
       image:
-        "https://i.postimg.cc/K87fWNHY/hr-admin-bg.jpg",
-      title: "HR Administration Services",
+        "https://i.postimg.cc/Y9zszSvr/best-cheap-places-for-couples-to-travel.jpg",
+      title: "City Escape Delight",
       description:
-        "Effortlessly handle HR tasks such as payroll processing, benefits administration, and employee record management with our comprehensive HR administration services. At PeoplePro, we offer a comprehensive suite of HR Administration Services designed to streamline your HR processes, enhance organizational efficiency, and empower your team to focus on strategic initiatives.",
+        "Embark on a rejuvenating urban retreat with our City Escape Delight package. Immerse yourself in the vibrant energy of metropolitan life while enjoying curated experiences that capture the essence of each city. From iconic landmarks to hidden gems, this package offers a perfect blend of cultural exploration, culinary delights, and relaxation.",
     },
     {
       image:
-        "https://i.postimg.cc/hPt7n0vj/photo-1565598469107-2bd14ae7e7e4-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-crop-faces.jpg",
-      title: "Employee Engagement Surveys",
+        "https://i.postimg.cc/RZb6q1G9/hero1-89.jpg",
+      title: "Culinary Odyssey Delight",
       description:
-        'Gauge and improve employee satisfaction with our engagement surveys, providing valuable insights into your workforces sentiment and areas for enhancement.PeoplePro offers comprehensive Employee Engagement Surveys designed to empower your company with actionable insights, foster a positive workplace culture, and enhance the overall employee experience.',
+        'Indulge your senses with the Culinary Odyssey Delight package, a gastronomic journey designed for food connoisseurs and culinary enthusiasts. Immerse yourself in the rich tapestry of global flavors as you savor exquisite dishes crafted by renowned chefs. From street food markets to Michelin-starred restaurants, this package offers a diverse culinary adventure that will tantalize your taste buds.',
     },
     {
       image:
-        "https://i.postimg.cc/x1KQFwQb/photo-1552664730-d307ca884978-blend-000000-blend-alpha-10-blend-mode-normal-blend-w-1-crop-faces-edg.jpg",
-      title: " Employee Communication Platforms",
+        "https://i.postimg.cc/HxYfK5Dc/smiling-young-couple-walking-with-backpacks-green-hills-summer-day-52137-37130.jpg",
+      title: "Adventure Seeker's Quest",
       description:
-        "Enhance internal communication and collaboration with our employee communication platforms, fostering a connected and informed workforce.In the dynamic landscape of modern workplaces, fostering clear and effective communication is paramount to organizational success.",
+        "For the thrill-seekers and adventure enthusiasts, our Adventure Seeker's Quest package is your ticket to heart-pounding excitement and adrenaline-pumping experiences. From mountain summits to raging rivers, this package is designed to satisfy your craving for adventure. Whether you're an avid hiker, a water sports enthusiast, or a daredevil ready for new challenges, join us on a Quest that promises thrilling escapades and unforgettable moments.",
     },
   ];
 
