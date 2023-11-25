@@ -4,23 +4,23 @@ import ServiceDetails from "./ServiceDetails/ServiceDetails";
 
 
 const Service = () => {
-  const [service, setService] = useState(null);
-  const { service_id } = useParams();
-  const services = useLoaderData();
-  // console.log(services, service_id);
+  const [packagee, setPackage] = useState(null);
+  const { id } = useParams();
+  const packages = useLoaderData();
+  console.log(packages, id);
 
   useEffect(() => {
-    const findService = services?.filter(
-      (service) => service.service_id == service_id
+    const findPackage = packages?.filter(
+      (packagee) => packagee.id == id
     );
-    // console.log(findService);
-    setService(findService[0]);
-  }, [service_id, services]);
+    // console.log(findPackage);
+    setPackage(findPackage[0]);
+  }, [id, packages]);
   // console.log(services);
 
   return (
     <div>
-      <ServiceDetails service={service}></ServiceDetails>
+      <ServiceDetails packagee={packagee}></ServiceDetails>
     </div>
   );
 };

@@ -23,16 +23,16 @@ import Login from "../Login/Login"
         {
           path: "/",
           element: <Home></Home>,
-          loader: () => fetch("/services.json"),
+          loader: () => fetch("/packages.json"),
         },
         {
-            path: "/service/:service_id",
+            path: "/service/:id",
             element: (
               <PrivateRoute>
                 <Service></Service>
                </PrivateRoute>
             ),
-            loader: () => fetch("/services.json"),
+            loader: () => fetch("/packages.json"),
           },
           {
             path: "/services",

@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "spotPhoto": "https://i.postimg.cc/DwMrR4Wj/c9Zaa3.jpg",
+      "tourType": "Adventure",
+      "tripTitle": "From rugged terrains to untamed wilderness, our Adventure tours are crafted for those who seek excitement, challenge, and the thrill of exploration.",
+      "price": "$799"
+    },
+    {
+      "id": 2,
+      "spotPhoto": "https://i.postimg.cc/44Wm8kHw/263ed7a7a1870e0f5aa197f0bed4b7ee.jpg",
+      "tourType": "Cultural",
+      "tripTitle": "Journey through rich cultural landscapes and dive into the heart of traditions with our Cultural tours.",
+      "price": "$499"
+    },
+    {
+      "id": 3,
+      "spotPhoto": "https://i.postimg.cc/0j459vps/beach-6174684-960-720.jpg",
+      "tourType": "Beach",
+      "tripTitle": "Indulge in the serenity of sun-kissed shores with our Beach tours.From tranquil retreats to vibrant beach parties.",
+      "price": "$899"
+    }
+  ]
+  

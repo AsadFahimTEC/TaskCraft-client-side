@@ -27,7 +27,7 @@ const AllService = () => {
     <div>
       <div className="py-10 mx-5 md:mx-15 my-5 md:my-15">
         <h2 className="text-center text-black text-6xl font-montserrat">
-          All Services
+          All Packages
         </h2>
 
         <div className="w-full md:w-2/5 flex mt-5 gap-5 mx-auto">
