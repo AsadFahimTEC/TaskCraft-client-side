@@ -1,3 +1,4 @@
+import Guides from "../Guides/Guides";
 import Packages from "../Packages/Packages";
 import "./Tabs.css";
 const Tabs = () => {
@@ -32,13 +33,7 @@ const Tabs = () => {
         </div>
 
         <div id="tab-content3" className="tab-content">
-          <h3>jQuery</h3>
-          <p>
-            jQuery is a fast, small, and feature-rich JavaScript library. It
-            makes things like HTML document traversal and manipulation, event
-            handling, animation, and Ajax much simpler with an easy-to-use API
-            that works across a multitude of browsers.
-          </p>
+          <Guides></Guides>
         </div>
       </div>
     </div>
