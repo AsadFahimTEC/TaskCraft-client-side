@@ -1,20 +1,19 @@
-
-import logo from "../assets/logo (2).png";
-import {  useContext, useState } from "react";
+import logo from "../assets/logo4.png";
+import { useContext } from "react";
 import { AuthContext } from "../Hook/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const toggleDropdown = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const closeDropdown = () => {
-    setIsDropdownOpen(false);
-  };
+  // const closeDropdown = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   // sign out a user
   const handleLogOut = () => {
@@ -27,10 +26,16 @@ const NavBar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/community">Community</NavLink>
       </li>
       <li>
-        <NavLink to="/contactus">Contact Us</NavLink>
+        <NavLink to="/blogs">Blogs</NavLink>
+      </li>
+      <li>
+        <NavLink to="/aboutus">About US</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
       </li>
     </>
   );
@@ -63,7 +68,7 @@ const NavBar = () => {
           </ul>
         </div>
         <h6 className="normal-case text-[#000] font-montserrat font-bold text-xl">
-         PeoplePro
+          JourneyJive
         </h6>
         <div className="ml-4">
           <img className="w-28 h-16 sm:w-24 sm:h-20" src={logo} alt="logo" />
@@ -90,21 +95,24 @@ const NavBar = () => {
                   {user.displayName}
                 </button>
               </li>
+              <li>
+                <button className="btn btn-sm  btn-ghost">{user.email}</button>
+              </li>
 
               <li>
                 <div className="relative inline-block">
-                  <button
+                  {/* <button
                     className="font-avenir mr-10 px-2 py-1 rounded text-black"
                     onClick={toggleDropdown}
-                  >
+                  > */}
                     Dashboard
-                  </button>
+                  {/* </button>
                   {isDropdownOpen && (
                     <div
                       className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg"
                       onClick={closeDropdown}
-                    >
-                      <ul className="p-2">
+                    > */}
+                      {/* <ul className="p-2">
                         <li>
                           <Link
                             to="/manageservice"
@@ -131,7 +139,7 @@ const NavBar = () => {
                         </li>
                       </ul>
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <button
