@@ -1,8 +1,9 @@
-import {useState} from "react";
+import { useState } from "react";
 import Slider from "react-slick";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 const Sliders = () => {
   const settings = {
@@ -22,11 +23,10 @@ const Sliders = () => {
         "Embark on a rejuvenating urban retreat with our City Escape Delight package. Immerse yourself in the vibrant energy of metropolitan life while enjoying curated experiences that capture the essence of each city. From iconic landmarks to hidden gems, this package offers a perfect blend of cultural exploration, culinary delights, and relaxation.",
     },
     {
-      image:
-        "https://i.postimg.cc/RZb6q1G9/hero1-89.jpg",
+      image: "https://i.postimg.cc/RZb6q1G9/hero1-89.jpg",
       title: "Culinary Odyssey Delight",
       description:
-        'Indulge your senses with the Culinary Odyssey Delight package, a gastronomic journey designed for food connoisseurs and culinary enthusiasts. Immerse yourself in the rich tapestry of global flavors as you savor exquisite dishes crafted by renowned chefs. From street food markets to Michelin-starred restaurants, this package offers a diverse culinary adventure that will tantalize your taste buds.',
+        "Indulge your senses with the Culinary Odyssey Delight package, a gastronomic journey designed for food connoisseurs and culinary enthusiasts. Immerse yourself in the rich tapestry of global flavors as you savor exquisite dishes crafted by renowned chefs. From street food markets to Michelin-starred restaurants, this package offers a diverse culinary adventure that will tantalize your taste buds.",
     },
     {
       image:
@@ -41,10 +41,21 @@ const Sliders = () => {
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
+
+    // Use react-toastify for an attractive notification
+    toast.success("Slide Changed!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
-    <div className="slider-container text-white bg-blue-600 mt-6 ml-6 mr-6 flex flex-col md:flex-row">
+    <div className="slider-container text-white bg-blue-600 mt-6 ml-6 mr-6 flex flex-col md:flex-row relative">
       <div className="slider-content w-full md:w-3/4">
         <Slider {...settings} afterChange={handleSlideChange}>
           {slides.map((slide, index) => (
@@ -58,7 +69,7 @@ const Sliders = () => {
           ))}
         </Slider>
       </div>
-      <div className="slider-details w-full md:w-1/4  p-6">
+      <div className="slider-details w-full md:w-1/4 p-6">
         <div className="slider-details-inner">
           <h2 className="text-4xl font-bold mb-4 text-white">
             {slides[currentSlide].title}
@@ -71,6 +82,17 @@ const Sliders = () => {
           </button>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
