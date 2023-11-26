@@ -11,6 +11,8 @@ import AllService from "../SingleService/AllService";
 import SingleService from "../SingleService/SingleService";
 import Register from "../Registration/Registration";
 import Login from "../Login/Login"
+import AllStory from "../TourStory/AllStory";
+import TouristStories from "../TourStory/TourStory";
 
 
 
@@ -73,6 +75,22 @@ import Login from "../Login/Login"
         {
           path: "/register",
           element: <Register></Register>,
+        },
+        {
+          path: "/allstory",
+          element:(
+            <PrivateRoute>
+              <AllStory></AllStory>
+            </PrivateRoute>
+          ) 
+        },
+        {
+          path: "/allstory",
+          element:(
+            <PrivateRoute>
+              <TouristStories></TouristStories>
+            </PrivateRoute>
+          ) 
         },
     ],
     },

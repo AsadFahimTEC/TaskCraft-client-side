@@ -1,32 +1,42 @@
-
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FacebookShareButton, FacebookIcon } from 'react-share';
 
 // Mock data for tourist stories
 const storiesData = [
-  {
-    id: 1,
-    title: 'JiveDiscover',
-    content: 'Unleash the wanderlust within you with JiveDiscover.Explore diverse cultures, scenic wonders, and thrilling experiences across the globe. Your journey begins here.',
-  },
-  {
-    id: 2,
-    title: 'JiveVoyages',
-    content: 'Embark on unforgettable journeys with JiveVoyages. Immerse yourself in extraordinary destinations, curated for those who seek more from travel. Let your adventures unfold.',
-  },
-  {
-    id: 3,
-    title: 'JiveDestiny',
-    content: 'JiveDestiny invites you to chart your own course. Enjoy tailor-made tours that blend adventure, culture, and relaxation. Your destiny is to explore, and we are here to guide you.',
-  },
-  {
-    id: 4,
-    title: 'JiveOdyssey',
-    content: 'Join the JiveOdyssey and navigate a world of wonders. From epic landscapes to hidden gems, each journey is a chapter in your personal odyssey. Where will your story take you.',
-  },
-];
+    {
+      id: 1,
+      title: 'JiveDiscover',
+      content: 'Unleash the wanderlust within you with JiveDiscover.Explore diverse cultures, scenic wonders, and thrilling experiences across the globe. Your journey begins here.',
+    },
+    {
+      id: 2,
+      title: 'JiveVoyages',
+      content: 'Embark on unforgettable journeys with JiveVoyages. Immerse yourself in extraordinary destinations, curated for those who seek more from travel. Let your adventures unfold.',
+    },
+    {
+      id: 3,
+      title: 'JiveDestiny',
+      content: 'JiveDestiny invites you to chart your own course. Enjoy tailor-made tours that blend adventure, culture, and relaxation. Your destiny is to explore, and we are here to guide you.',
+    },
+    {
+      id: 4,
+      title: 'JiveOdyssey',
+      content: 'Join the JiveOdyssey and navigate a world of wonders. From epic landscapes to hidden gems, each journey is a chapter in your personal odyssey. Where will your story take you.',
+    },
+    {
+      id: 5,
+      title: 'JiveWanderlust',
+      content: 'Embrace your inner wanderer with JiveWanderlust. Roam freely, create stories, and let the world be your canvas. Start your journey of endless discovery.',
+    },
+    {
+      id: 6,
+      title: 'JiveHorizons',
+      content: 'At JiveHorizons, we invite you to broaden your horizons. Discover new landscapes, cultures, and perspectives. Your next horizon is an invitation to adventure.',
+    },
+  ];
+
+
 
 // TouristStory component to display each story
 const TouristStory = ({ story, onViewDetails}) => {
@@ -63,7 +73,7 @@ const StoryDetail = ({ story, onShare }) => {
 };
 
 // Main component that renders the list of tourist stories
-const TouristStories = () => {
+const AllStory = () => {
   const [selectedStory, setSelectedStory] = useState(null);
 
   const onViewDetails = (storyId) => {
@@ -83,14 +93,8 @@ const TouristStories = () => {
         <TouristStory key={story.id} story={story} onViewDetails={onViewDetails} />
       ))}
       {selectedStory && <StoryDetail story={selectedStory} onShare={onShare} />}
-      <Link to="/allstory">
-      <button
-            className="ml-10 bg-[green] hover:bg-[blue] font-avenir text-[white] rounded-lg p-1">
-            All Stories
-          </button>
-          </Link>
     </div>
   );
 };
 
-export default TouristStories;
+export default AllStory;

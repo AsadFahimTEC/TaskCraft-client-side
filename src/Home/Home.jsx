@@ -5,6 +5,7 @@ import ContactUs from "../ContactUs/ContactUs";
 import Tabs from "../Tabs/Tabs";
 import TouristStories from "../TourStory/TourStory";
 // import App from "../Type/Type";
+// import App from "../Type/Type";
 // import Type from "../Type/Type";
 
 
@@ -17,8 +18,7 @@ const Home = () => {
             <Tabs></Tabs>
             <TouristStories></TouristStories>
             <Contact></Contact>
-            {/* <Type></Type>
-            <App></App> */}
+            {/* <App></App>  */}
             <ContactUs></ContactUs>
         </div>
     );

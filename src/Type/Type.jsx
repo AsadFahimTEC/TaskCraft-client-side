@@ -1,149 +1,103 @@
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import "./Type.css";
-import React, { useState, useEffect } from 'react';
+// Mock data for tour types and packages
+const tourTypes = ["Adventure", "Cultural", "Beach", "Mountain"];
+const packagesData = {
+  Adventure: [
+    { id: 1, name: "Mountain Trek", price: 500, duration: "3 days" },
+    { id: 2, name: "Jungle Safari", price: 400, duration: "2 days" },
+  ],
+  Cultural: [
+    { id: 3, name: "Historical Sites Tour", price: 300, duration: "2 days" },
+    { id: 4, name: "Cultural Immersion", price: 450, duration: "3 days" },
+  ],
+  Beach: [
+    { id: 5, name: "Island Paradise", price: 600, duration: "4 days" },
+    { id: 6, name: "Sunset Relaxation", price: 350, duration: "2 days" },
+  ],
+  Mountain: [
+    { id: 7, name: "Alpine Adventure", price: 550, duration: "3 days" },
+    { id: 8, name: "Snowy Peaks Exploration", price: 700, duration: "5 days" },
+  ],
+};
 
-const Tabs = ({ children, tabsList }) => {
-  const [active, setActive] = useState(0);
-  const [style, setStyle] = useState({});
-  const [tabs, setTabs] = useState(tabsList);
-  const [responsiveTabs, setResponsiveTabs] = useState([]);
-  const [dropdownStatus, setDropdownStatus] = useState(false);
-
-  const tabsRef = React.useRef(null);
-
-  const spliceTabs = () => {
-    let totalWidth = 0;
-    let barWidth = tabsRef.current.clientWidth - 44;
-
-    const el = document.getElementsByClassName('tab__item');
-
-    for (let i = 0; i < el.length; i++) {
-      const tabWidth = el[i].clientWidth;
-
-      if (i === el.length - 1) {
-        barWidth += 44;
-      }
-
-      if (totalWidth + tabWidth > barWidth) {
-        const newTabs = tabs.slice(i, tabs.length);
-        setResponsiveTabs(newTabs);
-        setTabs(tabs.slice(0, i));
-        break;
-      }
-
-      totalWidth += tabWidth;
-    }
-    setStyle();
-  };
-
-  const update = () => {
-    setTabs((prevTabs) => [...prevTabs, ...responsiveTabs]);
-    setResponsiveTabs([]);
-    spliceTabs();
-  };
-
-  const setStyle = () => {
-    let width = null;
-    let left = 0;
-
-    if (active < tabs.length) {
-      const el = document.getElementsByClassName('tab__item');
-
-      for (let i = 0; i < el.length; i++) {
-        let tabWidth = el[i].clientWidth;
-        if (i === active) {
-          width = tabWidth;
-          break;
-        } else {
-          left += tabWidth;
-        }
-      }
-    }
-
-    setStyle({ width, left });
-  };
-
-  const changeTab = (index) => {
-    setActive(index);
-    setDropdownStatus(false);
-    setStyle();
-  };
-
-  const toggleDropdown = () => {
-    setDropdownStatus((prevStatus) => !prevStatus);
-  };
-
-  useEffect(() => {
-    spliceTabs();
-    window.addEventListener('resize', update);
-
-    return () => {
-      window.removeEventListener('resize', update);
-    };
-  }, [tabs]);
-
+// TourType component to display each tour type
+const TourType = ({ type }) => {
   return (
-    <>
-      <ul className="tabs" ref={tabsRef}>
-        {tabs.map((item, index) => (
-          <li
-            key={index}
-            onClick={() => changeTab(index)}
-            className={`tab__item ${active === index ? 'active' : ''}`}
-          >
-            {item}
-          </li>
-        ))}
-        <span style={style} className="indicator"></span>
-        {responsiveTabs.length > 0 && (
-          <Dropdown active={dropdownStatus} toggleDropdown={toggleDropdown}>
-            {responsiveTabs.map((tab, index) => {
-              const tabIndex = tabs.length + index;
-              return (
-                <li
-                  key={index}
-                  className={`tab__item ${tabIndex === active ? 'active' : ''}`}
-                  onClick={() => changeTab(tabIndex)}
-                >
-                  {tab}
-                </li>
-              );
-            })}
-          </Dropdown>
-        )}
-      </ul>
-      {children.map((child, index) => (
-        <div key={index} className={`tab__content ${index === active ? 'active' : ''}`}>
-          {child}
-        </div>
-      ))}
-    </>
+    <div style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
+      <h3>{type}</h3>
+      <Link to={`/packages/${type.toLowerCase()}`}>
+        <button>Explore {type} Packages</button>
+      </Link>
+    </div>
   );
 };
 
-const Dropdown = ({ children, active, toggleDropdown }) => (
-  <div className="dropdown__wrapper">
-    <a className="dropdown__toggle" href="#" onClick={toggleDropdown} data-toggle="dropdown">
-      ...
-    </a>
-    <ul className={`dropdown ${active ? 'active' : ''}`}>{children}</ul>
-  </div>
-);
-
-const App = () => {
-  const tabsList = ['Dados da compra', 'Estado civil', 'cavalo de troia', 'todo mundo odeia o cris', 'teste', 'tchacabum'];
+// Package component to display each package
+const Package = ({ match }) => {
+  const type = match.params.type;
+  const packages = packagesData[type];
 
   return (
     <div>
-      <Tabs tabsList={tabsList}>
-        <div>Tab 1</div>
-        <div>Tab 2</div>
-        <div>Tab 3</div>
-        <div>Tab 4</div>
-        <div>Tab 5</div>
-        <div>Tab 6</div>
-      </Tabs>
+      <h2>{type} Packages</h2>
+      {packages.map((pkg) => (
+        <div
+          key={pkg.id}
+          style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}
+        >
+          <h3>{pkg.name}</h3>
+          <p>Price: ${pkg.price}</p>
+          <p>Duration: {pkg.duration}</p>
+          <Link to={`/packages/${type.toLowerCase()}/${pkg.id}`}>
+            <button>View Package</button>
+          </Link>
+        </div>
+      ))}
     </div>
+  );
+};
+
+// PackageDetail component to display details of a specific package
+const PackageDetail = ({ match }) => {
+  const type = match.params.type;
+  const packageId = match.params.packageId;
+  const packageDetail = packagesData[type].find(
+    (pkg) => pkg.id.toString() === packageId
+  );
+
+  return (
+    <div>
+      <h2>{packageDetail.name}</h2>
+      <p>Price: ${packageDetail.price}</p>
+      <p>Duration: {packageDetail.duration}</p>
+      <p>Additional details about the package...</p>
+    </div>
+  );
+};
+
+// Main component that renders the list of tour types
+const TourTypes = () => {
+  return (
+    <div>
+      <h1>Tour Types</h1>
+      {tourTypes.map((type) => (
+        <TourType key={type} type={type} />
+      ))}
+    </div>
+  );
+};
+
+// App component that sets up the routes
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/packages/:type/:packageId" component={PackageDetail} />
+        <Route path="/packages/:type" component={Package} />
+        <Route exact path="/" component={TourTypes} />
+      </Switch>
+    </Router>
   );
 };
 
