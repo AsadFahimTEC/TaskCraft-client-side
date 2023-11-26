@@ -133,7 +133,9 @@ import MyWishList from "../Dashboard/MyWishList";
             <PrivateRoute>
               <MyWishList></MyWishList>
             </PrivateRoute>
-          ) 
+          ),
+          // loader: ({params}) =>
+          // fetch(`http://localhost:5000/wishlist/${params.id}`),
         }
     ],
     },
