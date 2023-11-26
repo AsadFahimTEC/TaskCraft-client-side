@@ -105,7 +105,9 @@ const NavBar = () => {
                     className="font-avenir mr-10 px-2 py-1 rounded text-black"
                     onClick={toggleDropdown}
                   > */}
+                  <Link to="/dashboard">
                     Dashboard
+                    </Link>
                   {/* </button>
                   {isDropdownOpen && (
                     <div

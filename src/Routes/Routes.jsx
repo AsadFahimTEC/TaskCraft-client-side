@@ -13,6 +13,9 @@ import Register from "../Registration/Registration";
 import Login from "../Login/Login"
 import AllStory from "../TourStory/AllStory";
 import TouristStories from "../TourStory/TourStory";
+import MyProfile from "../Dashboard/MyProfile";
+import MyBookings from "../Dashboard/MyBookings";
+import MyWishList from "../Dashboard/MyWishList";
 
 
 
@@ -92,6 +95,46 @@ import TouristStories from "../TourStory/TourStory";
             </PrivateRoute>
           ) 
         },
+        {
+          path: "/dashboard",
+          element: (
+            <PrivateRoute>
+              <Dashboard></Dashboard>
+            </PrivateRoute>
+          )
+        },
+        {
+          path: "/my-profile",
+          element: (
+            <PrivateRoute>
+              <MyProfile></MyProfile>
+            </PrivateRoute>
+          ) 
+        },
+        {
+          path: "/my-bookings",
+          element: (
+            <PrivateRoute>
+              <MyBookings></MyBookings>
+            </PrivateRoute>
+          ) 
+        },
+        {
+          path: "/my-wishlist",
+          element: (
+            <PrivateRoute>
+              <MyWishList></MyWishList>
+            </PrivateRoute>
+          ) 
+        },
+        {
+          path: "/my-wishlist/:id",
+          element: (
+            <PrivateRoute>
+              <MyWishList></MyWishList>
+            </PrivateRoute>
+          ) 
+        }
     ],
     },
   ]);

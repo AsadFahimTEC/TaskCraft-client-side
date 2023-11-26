@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { FaRegHeart } from 'react-icons/fa';
+import { useState } from "react";
+
 
 const AllPackages = ({ packagee }) => {
+  const [wishlist, setWishlist] = useState([]);
+
   const {
     id,
     tourType,
@@ -9,13 +13,22 @@ const AllPackages = ({ packagee }) => {
     spotPhoto,
     price,
   } = packagee || {};
+  
+  const handleAddToWishlist = () => {
+    // Check if the package is not already in the wishlist
+    if (!wishlist.some(item => item.id === packagee.id)) {
+      setWishlist(prevWishlist => [...prevWishlist, packagee]);
+    }
+  };
 
   return (
     <div>
       <div className="relative flex w-75 h-75 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div className="relative mx-4 mt-4 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
           <img src={spotPhoto} className="h-full w-full object-cover" />
+          <Link to={`/my-wishlist/${id}`} onClick={handleAddToWishlist}>
           <FaRegHeart className="mt-2"></FaRegHeart>
+          </Link>
         </div>
         <div className="p-6">
           <div className="mb-2 flex items-center justify-between">
