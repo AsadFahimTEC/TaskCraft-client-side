@@ -17,6 +17,7 @@ import MyProfile from "../Dashboard/MyProfile";
 import MyBookings from "../Dashboard/MyBookings";
 import MyWishList from "../Dashboard/MyWishList";
 import Type from "../Type/Type";
+import TourGuideProfile from "../Service/TourGuideProfie";
 
 
 
@@ -65,6 +66,15 @@ import Type from "../Type/Type";
             element: (
                 <PrivateRoute>
             <Dashboard></Dashboard>
+            </PrivateRoute>
+        ),
+        },
+        {
+            path:"/tourguideprofile",
+            
+            element: (
+                <PrivateRoute>
+            <TourGuideProfile></TourGuideProfile>
             </PrivateRoute>
         ),
         },
