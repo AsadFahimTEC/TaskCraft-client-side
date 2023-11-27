@@ -4,7 +4,7 @@ import ContactUs from "../ContactUs/ContactUs";
 // import Services from "../Services/Services";
 import Tabs from "../Tabs/Tabs";
 import TouristStories from "../TourStory/TourStory";
-// import Type from "../Type/Type";
+import Type from "../Type/Type";
 
 
 
@@ -15,7 +15,7 @@ const Home = () => {
             <Tabs></Tabs>
             <TouristStories></TouristStories>
             <Contact></Contact>
-            {/* <Type></Type> */}
+            <Type></Type>
             <ContactUs></ContactUs>
         </div>
     );

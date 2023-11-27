@@ -16,6 +16,7 @@ import TouristStories from "../TourStory/TourStory";
 import MyProfile from "../Dashboard/MyProfile";
 import MyBookings from "../Dashboard/MyBookings";
 import MyWishList from "../Dashboard/MyWishList";
+import Type from "../Type/Type";
 
 
 
@@ -136,7 +137,16 @@ import MyWishList from "../Dashboard/MyWishList";
           ),
           // loader: ({params}) =>
           // fetch(`http://localhost:5000/wishlist/${params.id}`),
-        }
+        },
+        {
+          path: "/services/:service_id",
+          element: (
+            <PrivateRoute>
+          <Type></Type>
+          </PrivateRoute>
+          ),
+          loader: () => fetch("/AllService.json"),
+        },
     ],
     },
   ]);
