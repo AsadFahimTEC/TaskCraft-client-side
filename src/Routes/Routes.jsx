@@ -18,6 +18,7 @@ import MyBookings from "../Dashboard/MyBookings";
 import MyWishList from "../Dashboard/MyWishList";
 import Type from "../Type/Type";
 import TourGuideProfile from "../Service/TourGuideProfie";
+import BookingForm from "../Service/ServiceDetails/BookingForm";
 
 
 
@@ -75,6 +76,15 @@ import TourGuideProfile from "../Service/TourGuideProfie";
             element: (
                 <PrivateRoute>
             <TourGuideProfile></TourGuideProfile>
+            </PrivateRoute>
+        ),
+        },
+        {
+            path:"/booknow",
+            
+            element: (
+                <PrivateRoute>
+            <BookingForm></BookingForm>
             </PrivateRoute>
         ),
         },
