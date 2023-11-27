@@ -139,7 +139,7 @@ import Type from "../Type/Type";
           // fetch(`http://localhost:5000/wishlist/${params.id}`),
         },
         {
-          path: "/services/:service_id",
+          path: "/services/:tab",
           element: (
             <PrivateRoute>
           <Type></Type>
