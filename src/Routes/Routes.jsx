@@ -19,6 +19,7 @@ import MyWishList from "../Dashboard/MyWishList";
 import Type from "../Type/Type";
 import TourGuideProfile from "../Service/TourGuideProfie";
 import BookingForm from "../Service/ServiceDetails/BookingForm";
+import { BookingProvider } from "../Service/ServiceDetails/BookingContext";
 
 
 
@@ -80,11 +81,22 @@ import BookingForm from "../Service/ServiceDetails/BookingForm";
         ),
         },
         {
-            path:"/booknow",
+            path:"/booking-form",
             
             element: (
                 <PrivateRoute>
             <BookingForm></BookingForm>
+            </PrivateRoute>
+        ),
+        },
+        {
+            path:"/my-bookings",
+            
+            element: (
+                <PrivateRoute>
+              <BookingProvider>
+            <MyBookings></MyBookings>
+            </BookingProvider>
             </PrivateRoute>
         ),
         },
