@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Project 5 Features</h1>
   <p>Project Name: JourneyJive</p>
-  <P>Live Website Link: https://peoplepro-af1ed.web.app(client side) </P>
+  <P>Live Website Link: https://peoplepro-af1ed.web.app (client side) </P>
 </div>
 
 <details><summary><b>First Feature</b></summary>
