@@ -1,8 +1,8 @@
-
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Hook/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
@@ -35,19 +35,34 @@ const Login = () => {
     // console.log(name, photo, email, password);
 
     // sign in a user
-    signIn(email, password)
-      .then((result) => {
-        console.log(result.user);
-        e.target.reset();
+    signIn(email, password).then((result) => {
+      console.log(result.user);
+      e.target.reset();
+      const user = { email };
 
-        // navigate after login
-        navigate(location?.state ? location.state : "/");
-        return toast.success("user login successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-        return toast.error("password or email not match");
-      });
+      // get access token
+      axios
+        .post("http://localhost:5000/jwt", user, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.success) {
+            // navigate after login
+            navigate(location?.state ? location.state : "/");
+            return toast.success("google login successfully");
+          }
+        })
+
+        //   // navigate after login
+        //   navigate(location?.state ? location.state : "/");
+        //   return toast.success("user login successfully");
+        // })
+        .catch((error) => {
+          console.log(error);
+          return toast.error("password or email not match");
+        });
+    });
   };
 
   return (
