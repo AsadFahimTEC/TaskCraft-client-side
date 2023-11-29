@@ -19,7 +19,7 @@ import MyWishList from "../Dashboard/MyWishList";
 import Type from "../Type/Type";
 import TourGuideProfile from "../Service/TourGuideProfie";
 import BookingForm from "../Service/ServiceDetails/BookingForm";
-import { BookingProvider } from "../Service/ServiceDetails/BookingContext";
+// import { BookingProvider } from "../Service/ServiceDetails/BookingContext";
 
 
 
@@ -94,9 +94,9 @@ import { BookingProvider } from "../Service/ServiceDetails/BookingContext";
             
             element: (
                 <PrivateRoute>
-              <BookingProvider>
+              
             <MyBookings></MyBookings>
-            </BookingProvider>
+          
             </PrivateRoute>
         ),
         },

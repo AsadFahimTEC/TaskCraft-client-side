@@ -2,24 +2,15 @@ import { createContext, useContext, useState } from "react";
 
 const BookingContext = createContext();
 
-export const BookingProvider = ({ children }) => {
+export const useBooking = () => {
   const [bookedData, setBookedData] = useState([]);
 
   const addBooking = (booking) => {
-    setBookedData((prevData) => [...prevData, { ...booking, id: prevData.length + 1 }]);
+    setBookedData((prevData) => [...prevData, booking]);
   };
 
-  return (
-    <BookingContext.Provider value={{ bookedData, addBooking }}>
-      {children}
-    </BookingContext.Provider>
-  );
+  return { bookedData, addBooking };
 };
 
-export const useBooking = () => {
-  const context = useContext(BookingContext);
-  if (!context) {
-    throw new Error("useBooking must be used within a BookingProvider");
-  }
-  return context;
-};
+// Usage:
+// const { bookedData, addBooking } = useBooking();
