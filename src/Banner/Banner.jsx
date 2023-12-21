@@ -1,100 +1,31 @@
-import { useState } from "react";
-import Slider from "react-slick";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-const Sliders = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const slides = [
-    {
-      image:
-        "https://i.postimg.cc/Y9zszSvr/best-cheap-places-for-couples-to-travel.jpg",
-      title: "City Escape Delight",
-      description:
-        "Embark on a rejuvenating urban retreat with our City Escape Delight package. Immerse yourself in the vibrant energy of metropolitan life while enjoying curated experiences that capture the essence of each city. From iconic landmarks to hidden gems, this package offers a perfect blend of cultural exploration, culinary delights, and relaxation.",
-    },
-    {
-      image: "https://i.postimg.cc/RZb6q1G9/hero1-89.jpg",
-      title: "Culinary Odyssey Delight",
-      description:
-        "Indulge your senses with the Culinary Odyssey Delight package, a gastronomic journey designed for food connoisseurs and culinary enthusiasts. Immerse yourself in the rich tapestry of global flavors as you savor exquisite dishes crafted by renowned chefs. From street food markets to Michelin-starred restaurants, this package offers a diverse culinary adventure that will tantalize your taste buds.",
-    },
-    {
-      image:
-        "https://i.postimg.cc/HxYfK5Dc/smiling-young-couple-walking-with-backpacks-green-hills-summer-day-52137-37130.jpg",
-      title: "Adventure Seeker's Quest",
-      description:
-        "For the thrill-seekers and adventure enthusiasts, our Adventure Seeker's Quest package is your ticket to heart-pounding excitement and adrenaline-pumping experiences. From mountain summits to raging rivers, this package is designed to satisfy your craving for adventure. Whether you're an avid hiker, a water sports enthusiast, or a daredevil ready for new challenges, join us on a Quest that promises thrilling escapades and unforgettable moments.",
-    },
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handleSlideChange = (index) => {
-    setCurrentSlide(index);
-
-    // Use react-toastify for an attractive notification
-    toast.success("Slide Changed!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
+const Banner = () => {
   return (
-    <div className="slider-container text-white bg-blue-600 mt-6 ml-6 mr-6 flex flex-col md:flex-row relative">
-      <div className="slider-content w-full md:w-3/4">
-        <Slider {...settings} afterChange={handleSlideChange}>
-          {slides.map((slide, index) => (
-            <div key={index} className="slider-slide">
-              <img
-                src={slide.image}
-                alt={`Slide ${index}`}
-                className="slider-image"
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-      <div className="slider-details w-full md:w-1/4 p-6">
-        <div className="slider-details-inner">
-          <h2 className="text-4xl font-bold mb-4 text-white">
-            {slides[currentSlide].title}
-          </h2>
-          <p className="text-lg text-white font-montserrat font-bold mb-8">
-            {slides[currentSlide].description}
+    <div className="mt-4">
+      <div className="bg-red-200 p-4 md:p-8 flex flex-col md:flex-row items-center justify-between">
+        <div className="mb-8 md:mb-0 md:max-w-md mr-0 md:mr-8">
+          <h1 className="text-2xl md:text-4xl font-bold mb-4">
+            Sculpting Success, One Task at a Time
+          </h1>
+          <p className="text-gray-600">
+            TaskCraft is your ultimate productivity companion, designed to streamline your workflow and elevate your efficiency. Seamlessly manage tasks, deadlines, and projects with intuitive features. TaskCraft empowers you to conquer your goals and achieve success with ease.
           </p>
-          <button className="ml-2 bg-green-200 text-[#000] font-medium text-sm px-6 py-3 rounded-md transition duration-300 hover:bg-red-500">
-            BUY NOW
-          </button>
+          <a
+            href="/login"
+            className="mt-4 inline-block px-6 py-3 text-white bg-blue-500 rounded hover:bg-green-700 transition duration-300"
+          >
+            Let's Explore
+          </a>
+        </div>
+        <div className="flex-shrink-0">
+          <img
+            src="https://i.ibb.co/kqZYTqs/task-management-process-removebg-preview.png"
+            alt="Banner Image"
+            className="max-w-full h-auto"
+          />
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };
 
-export default Sliders;
+export default Banner;
