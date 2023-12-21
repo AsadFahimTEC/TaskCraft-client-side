@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_apiKey,
-  authDomain: import.meta.env.VITE_authDomain,
-  projectId: import.meta.env.VITE_projectId,
-  storageBucket: import.meta.env.VITE_storageBucket,
-  messagingSenderId: import.meta.env.VITE_messagingSenderId,
-  appId: import.meta.env.VITE_appId,
+  apiKey: "AIzaSyAWhHNCg7yjvCt5YrUFxZ7pzicsXPorOx0",
+  authDomain: "taskcraft-7c1de.firebaseapp.com",
+  projectId: "taskcraft-7c1de",
+  storageBucket: "taskcraft-7c1de.appspot.com",
+  messagingSenderId: "35791079583",
+  appId: "1:35791079583:web:f8c331dfd3ea61eb657aaa"
 };
 
 // Initialize Firebase

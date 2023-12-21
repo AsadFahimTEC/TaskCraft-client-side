@@ -1,4 +1,4 @@
-import logo from "../assets/logo4.png";
+// import logo from "../assets/logo4.png";
 import { useContext } from "react";
 import { AuthContext } from "../Hook/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
@@ -68,11 +68,11 @@ const NavBar = () => {
           </ul>
         </div>
         <h6 className="normal-case text-[#000] font-montserrat font-bold text-xl">
-          JourneyJive
+          TaskCraft
         </h6>
-        <div className="ml-4">
+        {/* <div className="ml-4">
           <img className="w-28 h-16 sm:w-24 sm:h-20" src={logo} alt="logo" />
-        </div>
+        </div> */}
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu font-avenir menu-horizontal px-1">{navLinks}</ul>
