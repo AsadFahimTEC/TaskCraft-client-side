@@ -1,0 +1,61 @@
+.user-section-container {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+}
+
+.user-section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #007bff;
+}
+
+.user-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  margin: 20px;
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #d6d8db;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  background-color: #f0f2f5; /* Change to a slightly different shade on hover */
+}
+
+.user-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #343a40;
+}
+
+.user-card-list {
+  padding-left: 20px;
+}
+
+.user-card-list li {
+  list-style-type: disc;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+/* Add a subtle animation to the list items */
+.user-card-list li {
+  transition: transform 0.2s;
+}
+
+.user-card-list li:hover {
+  transform: scale(1.05);
+}

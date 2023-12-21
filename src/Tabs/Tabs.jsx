@@ -1,43 +1,60 @@
-import Guides from "../Guides/Guides";
-import Packages from "../Packages/Packages";
-import "./Tabs.css";
-const Tabs = () => {
+
+import { useSpring, animated } from "react-spring";
+import "./UserSection.css";
+
+const UserSection = () => {
+  const userTypes = [
+    {
+      type: "Developers",
+      benefits: [
+        "Access to a variety of coding resources",
+        "Collaborate with other developers",
+        "Stay updated on the latest technologies",
+      ],
+    },
+    {
+      type: "Corporate Professionals",
+      benefits: [
+        "Efficient project management tools",
+        "Collaboration with team members",
+        "Task tracking and organization",
+      ],
+    },
+    {
+      type: "Bankers",
+      benefits: [
+        "Financial analytics and reporting",
+        "Secure data management",
+        "Collaborate with financial experts",
+      ],
+    },
+    // Add more user types as needed
+  ];
+
+  const fadeIn = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+  });
+
   return (
-    <div>
-      <div className="tabs">
-        <input type="radio" name="tabs" id="tab1" defaultChecked />
-        <label htmlFor="tab1">
-          <i className="fa fa-html5"></i>
-          <span>Overview</span>
-        </label>
-
-        <input type="radio" name="tabs" id="tab2" />
-        <label htmlFor="tab2">
-          <i className="fa fa-css3"></i>
-          <span>Packages</span>
-        </label>
-
-        <input type="radio" name="tabs" id="tab3" />
-        <label htmlFor="tab3">
-          <i className="fa fa-code"></i>
-          <span>Guides</span>
-        </label>
-
-        <div id="tab-content1" className="tab-content">
-          <h2>Amazing Winter Mountain Panorama</h2>
-          <iframe className="mt-2" width="560" height="315" src="https://www.shutterstock.com/video/clip-1022239741-amazing-beautiful-winter-caucasian-mountain-panorama-view" frameBorder="0" allowfullscreen autoPlay></iframe>
-        </div>
-
-        <div id="tab-content2" className="tab-content">
-          <Packages></Packages>
-        </div>
-
-        <div id="tab-content3" className="tab-content">
-          <Guides></Guides>
-        </div>
+    <animated.div style={fadeIn} className="user-section-container">
+      <h2 className="user-section-title">Who Can Benefit?</h2>
+      <div className="user-cards-container">
+        {userTypes.map((user, index) => (
+          <animated.div key={index} className="user-card">
+            <div className="user-card-content">
+              <h3 className="user-card-title">{user.type}</h3>
+              <ul className="user-card-list">
+                {user.benefits.map((benefit, index) => (
+                  <li key={index}>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          </animated.div>
+        ))}
       </div>
-    </div>
+    </animated.div>
   );
 };
 
-export default Tabs;
+export default UserSection;
