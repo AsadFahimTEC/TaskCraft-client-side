@@ -1,0 +1,26 @@
+.app {
+  text-align: center;
+  padding: 20px;
+}
+
+.lists-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.task-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  min-height: 100px;
+  width: 200px;
+}
+
+.task-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
