@@ -85,12 +85,11 @@ const NavBar = () => {
               <li>
                 <button className="btn btn-sm  btn-ghost">{user.email}</button>
               </li>
-
+              
               <li>
                 <div className="relative inline-block">
                   <Link to="/dashboard"></Link>
                 </div>
-
                 <button
                   onClick={handleLogOut}
                   className="font-avenir mt-2 mr-10 px-2 py-1 rounded bg-purple-800 text-white"

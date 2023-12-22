@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   // console.log('location in the login page', location);
@@ -13,6 +13,22 @@ const Login = () => {
   // google login
   const handleGoogleLogin = () => {
     googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
+        return toast.success("google login successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        return toast.error("password or email not match");
+      });
+  };
+
+  // github login
+  const handleGithubLogin = () => {
+    githubSignIn()
       .then((result) => {
         console.log(result.user);
 
@@ -115,6 +131,14 @@ const Login = () => {
                   className="p-2 rounded bg-green-600 text-white"
                 >
                   Login With Google
+                </button>
+              </div>
+              <div className="form-control mt-1">
+                <button
+                  onClick={handleGithubLogin}
+                  className="p-2 rounded bg-blue-600 text-white"
+                >
+                  Login With GitHub
                 </button>
               </div>
               <p className="text-center text-[#000] font-semibold text-xs mt-4">

@@ -16,7 +16,7 @@ const Register = () => {
     const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    const userRole = form.get("userRole");
+    // const userRole = form.get("userRole");
   // console.log(name, photo, email, password, userRole);
 
     // validation
