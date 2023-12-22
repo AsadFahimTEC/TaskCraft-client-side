@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToDoDetails from "./ToDoDetails";
@@ -19,61 +19,39 @@ const Dashboard = () => {
       .then((data) => setTodos(data));
   }, [todos, updated]);
 
-  console.log(todos);
+  // console.log(todos);
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
 
     const sourceList = result.source.droppableId;
     const destinationList = result.destination.droppableId;
+    const movedTask = todos[result.source.index];
 
-    if (sourceList === destinationList) {
-      // Reordering within the same list
-      const newList = sourceList === "tasks" ? [...tasks] : [...ongoingTasks];
-      const [movedTask] = newList.splice(result.source.index, 1);
-      newList.splice(result.destination.index, 0, movedTask);
+    if (sourceList !== destinationList) {
+      // If moving between different lists, update the task status
+      // Here, I assume that your task object has a 'status' property
+      const newStatus = destinationList === "ongoing" ? "Ongoing" : "Completed";
+      const updatedTask = { ...movedTask, status: newStatus };
 
-      if (sourceList === "tasks") {
-        setTasks(newList);
-      } else {
-        setOngoingTasks(newList);
-      }
-    } else {
-      // Moving between different lists
-      const movedTask =
-        sourceList === "tasks"
-          ? tasks[result.source.index]
-          : ongoingTasks[result.source.index];
-
-      if (destinationList === "ongoing") {
-        setOngoingTasks([...ongoingTasks, movedTask]);
-        toast.success("Task added to Ongoing List!");
-      } else if (destinationList === "completed") {
-        setCompletedTasks([...completedTasks, movedTask]);
-        toast.success("Task completed successfully!");
-      }
-
-      if (sourceList === "tasks") {
-        setTasks(tasks.filter((task) => task.id !== movedTask.id));
-      } else {
-        setOngoingTasks(
-          ongoingTasks.filter((task) => task.id !== movedTask.id)
-        );
-      }
+      // Update the task on the server
+      fetch(`http://localhost:5080/tasks/${movedTask._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedTask),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.modifiedCount > 0) {
+            setUpdated(!updated);
+            toast.success("Task updated successfully!");
+          }
+        });
     }
   };
 
-  const handleCompleteTask = (taskId) => {
-    const completedTask = ongoingTasks.find((task) => task.id === taskId);
-    setCompletedTasks([...completedTasks, completedTask]);
-    setOngoingTasks(ongoingTasks.filter((task) => task.id !== taskId));
-    toast.success("Task completed successfully!");
-  };
-
-  const handleDeleteCompletedTask = (taskId) => {
-    setCompletedTasks(completedTasks.filter((task) => task.id !== taskId));
-    toast.success("Task deleted successfully!");
-  };
 
   return (
     <div className="container mx-auto p-4">
