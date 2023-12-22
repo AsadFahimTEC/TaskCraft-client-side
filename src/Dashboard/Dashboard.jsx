@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5080/tasks")
+    fetch("https://task-craft-server-side.vercel.app/tasks")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, [todos, updated]);
@@ -35,7 +35,7 @@ const Dashboard = () => {
       const updatedTask = { ...movedTask, status: newStatus };
 
       // Update the task on the server
-      fetch(`http://localhost:5080/tasks/${movedTask._id}`, {
+      fetch(`https://task-craft-server-side.vercel.app/tasks/${movedTask._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

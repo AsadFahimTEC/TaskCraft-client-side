@@ -58,7 +58,7 @@ const Login = () => {
 
       // get access token
       axios
-        .post("https://b8-a12-server-side.vercel.app/jwt", user, {
+        .post("https://task-craft-server-side.vercel.app/jwt", user, {
           withCredentials: true,
         })
         .then((res) => {

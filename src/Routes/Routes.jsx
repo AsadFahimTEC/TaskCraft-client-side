@@ -37,7 +37,7 @@ import UpdateProduct from "../Dashboard/UpdateProduct";
             <CreateTask></CreateTask>
             </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5080/tasks"),
+        loader: () => fetch("https://task-craft-server-side.vercel.app/tasks"),
         },
         {
           path: "/updateproduct/:id",
@@ -47,7 +47,7 @@ import UpdateProduct from "../Dashboard/UpdateProduct";
             </PrivateRoute>
           ),
           loader: ({params}) =>
-            fetch(`http://localhost:5080/tasks/${params.id}`),
+            fetch(`https://task-craft-server-side.vercel.app/tasks/${params.id}`),
         },
         {
           path: "/login",
