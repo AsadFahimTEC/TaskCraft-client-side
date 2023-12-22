@@ -10,7 +10,7 @@ const Banner = () => {
             TaskCraft is your ultimate productivity companion, designed to streamline your workflow and elevate your efficiency. Seamlessly manage tasks, deadlines, and projects with intuitive features. TaskCraft empowers you to conquer your goals and achieve success with ease.
           </p>
           <a
-            href="/login"
+            href="/dashboard"
             className="mt-4 inline-block px-6 py-3 text-white bg-blue-500 rounded hover:bg-green-700 transition duration-300"
           >
             Let's Explore

@@ -1,5 +1,4 @@
 import Sliders from "../Banner/Banner";
-// import Services from "../Services/Services";
 import UserSection from "../Tabs/Tabs";
 
 

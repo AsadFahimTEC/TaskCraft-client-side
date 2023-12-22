@@ -11,16 +11,11 @@ import AllService from "../SingleService/AllService";
 import SingleService from "../SingleService/SingleService";
 import Register from "../Registration/Registration";
 import Login from "../Login/Login"
-import AllStory from "../TourStory/AllStory";
-import TouristStories from "../TourStory/TourStory";
 import MyProfile from "../Dashboard/MyProfile";
 import MyBookings from "../Dashboard/MyBookings";
 import MyWishList from "../Dashboard/MyWishList";
-import Type from "../Type/Type";
 import TourGuideProfile from "../Service/TourGuideProfie";
 import BookingForm from "../Service/ServiceDetails/BookingForm";
-// import { BookingProvider } from "../Service/ServiceDetails/BookingContext";
-
 
 
   const router = createBrowserRouter([
@@ -113,22 +108,6 @@ import BookingForm from "../Service/ServiceDetails/BookingForm";
           element: <Register></Register>,
         },
         {
-          path: "/allstory",
-          element:(
-            <PrivateRoute>
-              <AllStory></AllStory>
-            </PrivateRoute>
-          ) 
-        },
-        {
-          path: "/allstory",
-          element:(
-            <PrivateRoute>
-              <TouristStories></TouristStories>
-            </PrivateRoute>
-          ) 
-        },
-        {
           path: "/dashboard",
           element: (
             <PrivateRoute>
@@ -167,17 +146,6 @@ import BookingForm from "../Service/ServiceDetails/BookingForm";
               <MyWishList></MyWishList>
             </PrivateRoute>
           ),
-          // loader: ({params}) =>
-          // fetch(`http://localhost:5000/wishlist/${params.id}`),
-        },
-        {
-          path: "/services/:tab",
-          element: (
-            <PrivateRoute>
-          <Type></Type>
-          </PrivateRoute>
-          ),
-          loader: () => fetch("/AllService.json"),
         },
     ],
     },
