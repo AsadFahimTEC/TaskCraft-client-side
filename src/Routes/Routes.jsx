@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import Register from "../Registration/Registration";
 import Login from "../Login/Login"
 import CreateTask from "../Dashboard/CreateTask";
+import UpdateProduct from "../Dashboard/UpdateProduct";
 
 
   const router = createBrowserRouter([
@@ -37,6 +38,16 @@ import CreateTask from "../Dashboard/CreateTask";
             </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:5080/tasks"),
+        },
+        {
+          path: "/updateproduct/:id",
+          element: (
+            <PrivateRoute>
+              <UpdateProduct></UpdateProduct>
+            </PrivateRoute>
+          ),
+          loader: ({params}) =>
+            fetch(`http://localhost:5080/tasks/${params.id}`),
         },
         {
           path: "/login",
