@@ -6,6 +6,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Register from "../Registration/Registration";
 import Login from "../Login/Login"
+import CreateTask from "../Dashboard/CreateTask";
 
 
   const router = createBrowserRouter([
@@ -27,6 +28,15 @@ import Login from "../Login/Login"
             <Dashboard></Dashboard>
             </PrivateRoute>
         ),
+        },
+        {
+            path:"/createtask",
+            element: (
+                <PrivateRoute>
+            <CreateTask></CreateTask>
+            </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5080/tasks"),
         },
         {
           path: "/login",

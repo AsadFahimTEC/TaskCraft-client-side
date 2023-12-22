@@ -1,18 +1,13 @@
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
-  const [tasks, setTasks] = useState([
-    { id: "task-1", content: "Task 1" },
-    { id: "task-2", content: "Task 2" },
-    { id: "task-3", content: "Task 3" },
-  ]);
-
+  const [tasks, setTasks] = useState([]);
   const [ongoingTasks, setOngoingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
-  // const [newTaskContent, setNewTaskContent] = useState("");
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -54,34 +49,8 @@ const Dashboard = () => {
     }
   };
 
-  // const handleAddTask = () => {
-  //   if (newTaskContent.trim() === "") {
-  //     toast.error("Task content cannot be empty!");
-  //     return;
-  //   }
-
-  //   if (tasks.some((task) => task.content === newTaskContent)) {
-  //     toast.error("Task with the same content already exists!");
-  //     return;
-  //   }
-
-  //   const newTask = {
-  //     id: `task-${ongoingTasks.length + 1}`,
-  //     content: newTaskContent,
-  //   };
-
-  //   setOngoingTasks([...ongoingTasks, newTask]);
-  //   setNewTaskContent("");
-  //   toast.success("Task added successfully!");
-  // };
-
-  const handleCreateTask = () =>{
-    toast.success('Create New Task Successfully');
-  }
-  const handleSeePreviousTasks = () =>{
-    toast.success('Handle Previous Task Successfully');
-  }
-
+  
+  
   const handleCompleteTask = (taskId) => {
     const completedTask = ongoingTasks.find((task) => task.id === taskId);
     setCompletedTasks([...completedTasks, completedTask]);
@@ -99,14 +68,14 @@ const Dashboard = () => {
       <h1 className="text-2xl font-bold mb-4 text-center">Task Management Dashboard</h1>
       <div className="flex justify-center">
         <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3">
+          <NavLink to="/createtask">
         <button
-            onClick={handleCreateTask}
             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none mr-2"
           >
             Create New Task
           </button>
+          </NavLink>
           <button
-            onClick={handleSeePreviousTasks}
             className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none"
           >
             See Previous Tasks
