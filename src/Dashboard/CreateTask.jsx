@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom";
 
 
 const CreateTask = () => {
   const { register, handleSubmit, reset } = useForm();
   const [ongoingTasks, setOngoingTasks] = useState([]);
+  const navigate = useNavigate();
 
   const handleCreateTask = async (data) => {
     try {
@@ -19,6 +20,7 @@ const CreateTask = () => {
       setOngoingTasks([...ongoingTasks, newTask]);
       toast.success("Task Created Successfully");
       reset();
+      navigate("/dashboard");
       }
       else {
         console.error("Unexpected response structure:", response.data);

@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ToDoDetails from "./ToDoDetails";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [ongoingTasks, setOngoingTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+
+  const [todos, setTodos] = useState([]);
+  const [updated, setUpdated] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5080/tasks")
+      .then((res) => res.json())
+      .then((data) => setTodos(data));
+  }, [todos, updated]);
+
+  console.log(todos);
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -44,13 +56,13 @@ const Dashboard = () => {
       if (sourceList === "tasks") {
         setTasks(tasks.filter((task) => task.id !== movedTask.id));
       } else {
-        setOngoingTasks(ongoingTasks.filter((task) => task.id !== movedTask.id));
+        setOngoingTasks(
+          ongoingTasks.filter((task) => task.id !== movedTask.id)
+        );
       }
     }
   };
 
-  
-  
   const handleCompleteTask = (taskId) => {
     const completedTask = ongoingTasks.find((task) => task.id === taskId);
     setCompletedTasks([...completedTasks, completedTask]);
@@ -65,25 +77,21 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Task Management Dashboard</h1>
-      <div className="flex justify-center">
-        <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3">
-          <NavLink to="/createtask">
-        <button
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none mr-2"
-          >
+      <h1 className="text-2xl font-bold mb-4 text-center">
+        Task Management Dashboard
+      </h1>
+      <div className="flex justify-center space-x-2 mb-4">
+        <NavLink to="/createtask">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none">
             Create New Task
           </button>
-          </NavLink>
-          <button
-            className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none"
-          >
-            See Previous Tasks
-          </button>
-        </div>
+        </NavLink>
+        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none">
+          See Previous Tasks
+        </button>
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-center mt-4">
+        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <Droppable droppableId="tasks">
             {(provided) => (
               <div
@@ -91,31 +99,25 @@ const Dashboard = () => {
                 ref={provided.innerRef}
                 className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded"
               >
-                <h2 className="text-xl font-semibold mb-2">To Do List</h2>
-                {tasks.map((task, index) => (
-                  <Draggable
-                    key={task.id}
-                    draggableId={task.id}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="bg-white border border-gray-300 p-2 mb-2 rounded flex items-center justify-between cursor-move"
-                      >
-                        <span>{task.content}</span>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
+                <h2 className="text-xl font-semibold mb-4 text-center">To Do List</h2>
+                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-5">
+                  {todos.length === 0 ? (
+                    <p className="text-center text-red-500">No data found.</p>
+                  ) : (
+                    todos?.map((todo) => (
+                      <ToDoDetails
+                        setUpdated={setUpdated}
+                        key={todo._id}
+                        todo={todo}
+                      />
+                    ))
+                  )}
+                </div>
               </div>
             )}
           </Droppable>
-          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded ml-4">
-            <h2 className="text-xl font-semibold mb-2">Ongoing List</h2>
+          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded">
+            <h2 className="text-xl font-semibold mb-4 text-center">Ongoing List</h2>
             <Droppable droppableId="ongoing">
               {(provided) => (
                 <div
@@ -152,8 +154,8 @@ const Dashboard = () => {
               )}
             </Droppable>
           </div>
-          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded ml-4">
-            <h2 className="text-xl font-semibold mb-2">Completed List</h2>
+          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded">
+            <h2 className="text-xl font-semibold mb-4 text-center">Completed List</h2>
             <Droppable droppableId="completed">
               {(provided) => (
                 <div
