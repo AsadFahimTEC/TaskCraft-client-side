@@ -1,19 +1,9 @@
-// import logo from "../assets/logo4.png";
 import { useContext } from "react";
 import { AuthContext } from "../Hook/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // const toggleDropdown = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const closeDropdown = () => {
-  //   setIsDropdownOpen(false);
-  // };
 
   // sign out a user
   const handleLogOut = () => {
@@ -70,9 +60,6 @@ const NavBar = () => {
         <h6 className="normal-case text-[#000] font-montserrat font-bold text-xl">
           TaskCraft
         </h6>
-        {/* <div className="ml-4">
-          <img className="w-28 h-16 sm:w-24 sm:h-20" src={logo} alt="logo" />
-        </div> */}
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu font-avenir menu-horizontal px-1">{navLinks}</ul>
@@ -101,47 +88,7 @@ const NavBar = () => {
 
               <li>
                 <div className="relative inline-block">
-                  {/* <button
-                    className="font-avenir mr-10 px-2 py-1 rounded text-black"
-                    onClick={toggleDropdown}
-                  > */}
-                  <Link to="/dashboard">
-                    Dashboard
-                    </Link>
-                  {/* </button>
-                  {isDropdownOpen && (
-                    <div
-                      className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg"
-                      onClick={closeDropdown}
-                    > */}
-                      {/* <ul className="p-2">
-                        <li>
-                          <Link
-                            to="/manageservice"
-                            className="block px-4 py-2 text-black"
-                          >
-                            My Dashboard
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/addservice"
-                            className="block px-4 py-2 text-black"
-                          >
-                            Add Services
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/book"
-                            className="block px-4 py-2 text-black"
-                          >
-                            My Schedules
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  )} */}
+                  <Link to="/dashboard"></Link>
                 </div>
 
                 <button

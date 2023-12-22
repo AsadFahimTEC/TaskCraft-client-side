@@ -96,7 +96,7 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Task Management</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Task Management Dashboard</h1>
       <div className="flex justify-center">
         <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3">
         <button

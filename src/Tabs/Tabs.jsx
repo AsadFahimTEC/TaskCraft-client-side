@@ -1,35 +1,11 @@
 
 import { useSpring, animated } from "react-spring";
 import "./UserSection.css";
+import { useLoaderData } from "react-router-dom";
 
 const UserSection = () => {
-  const userTypes = [
-    {
-      type: "Developers",
-      benefits: [
-        "Access to a variety of coding resources",
-        "Collaborate with other developers",
-        "Stay updated on the latest technologies",
-      ],
-    },
-    {
-      type: "Corporate Professionals",
-      benefits: [
-        "Efficient project management tools",
-        "Collaboration with team members",
-        "Task tracking and organization",
-      ],
-    },
-    {
-      type: "Bankers",
-      benefits: [
-        "Financial analytics and reporting",
-        "Secure data management",
-        "Collaborate with financial experts",
-      ],
-    },
-    // Add more user types as needed
-  ];
+  const user = useLoaderData();
+  console.log(user);
 
   const fadeIn = useSpring({
     opacity: 1,
@@ -40,7 +16,7 @@ const UserSection = () => {
     <animated.div style={fadeIn} className="user-section-container">
       <h2 className="user-section-title">Who Can Benefit?</h2>
       <div className="user-cards-container">
-        {userTypes.map((user, index) => (
+        {user.map((user, index) => (
           <animated.div key={index} className="user-card">
             <div className="user-card-content">
               <h3 className="user-card-title">{user.type}</h3>

@@ -1,0 +1,27 @@
+[
+    {
+      "type": "Developers",
+      "benefits": [
+        "Access to a variety of coding resources",
+        "Collaborate with other developers",
+        "Stay updated on the latest technologies"
+      ]
+    },
+    {
+      "type": "Corporate Professionals",
+      "benefits": [
+        "Efficient project management tools",
+        "Collaboration with team members",
+        "Task tracking and organization"
+      ]
+    },
+    {
+      "type": "Bankers",
+      "benefits": [
+        "Financial analytics and reporting",
+        "Secure data management",
+        "Collaborate with financial experts"
+      ]
+    }
+  ]
+  
