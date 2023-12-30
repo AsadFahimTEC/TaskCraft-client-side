@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 
-const ToDoDetails = ({ todo, setUpdated }) => {
+const ToDoDetails = ({ todo, setUpdated, onDeleteTask }) => {
   const { _id, description, deadline, priority, title } = todo || {};
+
+  const handleDelete = () => {
+    onDeleteTask(todo._id);
+  };
 
   return (
     <div className="ml-4 mr-4 mb-8">
@@ -26,7 +30,7 @@ const ToDoDetails = ({ todo, setUpdated }) => {
                 Edit
               </button>
             </Link>
-            <button
+            <button  onClick={handleDelete}
               className="bg-red-500 hover:bg-red-700 text-white rounded px-5 py-2 md:px-4 md:py-1"
             >
               Delete

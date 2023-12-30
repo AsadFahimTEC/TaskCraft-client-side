@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    fetch("https://task-craft-server-side.vercel.app/tasks")
+    fetch("http://localhost:5080/tasks")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, [todos, updated]);
@@ -35,7 +35,7 @@ const Dashboard = () => {
       const updatedTask = { ...movedTask, status: newStatus };
 
       // Update the task on the server
-      fetch(`https://task-craft-server-side.vercel.app/tasks/${movedTask._id}`, {
+      fetch(`http://localhost:5080/tasks/${movedTask._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -50,6 +50,29 @@ const Dashboard = () => {
           }
         });
     }
+  };
+
+  const handleDeleteTask = (taskId) => {
+    // Remove the task from the UI
+    const updatedTodos = todos.filter((todo) => todo._id !== taskId);
+    setTodos(updatedTodos);
+
+    // Delete the task from the database
+    fetch(`http://localhost:5080/tasks/${taskId}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Task deleted successfully!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting task:", error);
+        // Rollback UI changes if there is an error
+        setTodos((prevTodos) => [...prevTodos, ...updatedTodos]);
+        toast.error("Error deleting task. Please try again.");
+      });
   };
 
 
@@ -87,6 +110,7 @@ const Dashboard = () => {
                         setUpdated={setUpdated}
                         key={todo._id}
                         todo={todo}
+                        onDeleteTask={handleDeleteTask}
                       />
                     ))
                   )}
@@ -156,7 +180,7 @@ const Dashboard = () => {
                         >
                           <span>{task.content}</span>
                           <button
-                            onClick={() => handleDeleteCompletedTask(task.id)}
+                            onClick={() => handleDeleteProduct(task.id)}
                             className="text-xs px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none"
                           >
                             Delete
