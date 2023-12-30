@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,20 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 import ToDoDetails from "./ToDoDetails";
 
 const Dashboard = () => {
-  const [tasks, setTasks] = useState([]);
-  const [ongoingTasks, setOngoingTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
-
   const [todos, setTodos] = useState([]);
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5080/tasks")
+    fetch("https://task-craft-server-side.vercel.app/tasks")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, [todos, updated]);
-
-  // console.log(todos);
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -29,13 +23,11 @@ const Dashboard = () => {
     const movedTask = todos[result.source.index];
 
     if (sourceList !== destinationList) {
-      // If moving between different lists, update the task status
-      // Here, I assume that your task object has a 'status' property
-      const newStatus = destinationList === "ongoing" ? "Ongoing" : "Completed";
+      const newStatus =
+        destinationList === "ongoing" ? "Ongoing" : "Completed";
       const updatedTask = { ...movedTask, status: newStatus };
 
-      // Update the task on the server
-      fetch(`http://localhost:5080/tasks/${movedTask._id}`, {
+      fetch(`https://task-craft-server-side.vercel.app/tasks/${movedTask._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -53,12 +45,10 @@ const Dashboard = () => {
   };
 
   const handleDeleteTask = (taskId) => {
-    // Remove the task from the UI
     const updatedTodos = todos.filter((todo) => todo._id !== taskId);
     setTodos(updatedTodos);
 
-    // Delete the task from the database
-    fetch(`http://localhost:5080/tasks/${taskId}`, {
+    fetch(`https://task-craft-server-side.vercel.app/tasks/${taskId}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -69,12 +59,10 @@ const Dashboard = () => {
       })
       .catch((error) => {
         console.error("Error deleting task:", error);
-        // Rollback UI changes if there is an error
         setTodos((prevTodos) => [...prevTodos, ...updatedTodos]);
         toast.error("Error deleting task. Please try again.");
       });
   };
-
 
   return (
     <div className="container mx-auto p-4">
@@ -93,107 +81,143 @@ const Dashboard = () => {
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <Droppable droppableId="tasks">
+          <Droppable droppableId="tasks" type="TASK">
             {(provided) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded"
               >
-                <h2 className="text-xl font-semibold mb-4 text-center">To Do List</h2>
+                <h2 className="text-xl font-semibold mb-4 text-center">
+                  To Do List
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-5">
                   {todos.length === 0 ? (
                     <p className="text-center text-red-500">No data found.</p>
                   ) : (
-                    todos?.map((todo) => (
-                      <ToDoDetails
-                        setUpdated={setUpdated}
-                        key={todo._id}
-                        todo={todo}
-                        onDeleteTask={handleDeleteTask}
-                      />
-                    ))
+                    <Droppable droppableId="todo-list" type="TASK">
+                      {(provided) => (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                        >
+                          {todos?.map((todo, index) => (
+                            <Draggable
+                              key={todo._id}
+                              draggableId={todo._id}
+                              index={index}
+                              type="TASK"  
+                            >
+                              {(provided) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <ToDoDetails
+                                    setUpdated={setUpdated}
+                                    todo={todo}
+                                    onDeleteTask={handleDeleteTask}
+                                  />
+                                </div>
+                              )}
+                            </Draggable>
+                          ))}
+                          {provided.placeholder}
+                        </div>
+                      )}
+                    </Droppable>
                   )}
                 </div>
               </div>
             )}
           </Droppable>
-          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded">
-            <h2 className="text-xl font-semibold mb-4 text-center">Ongoing List</h2>
-            <Droppable droppableId="ongoing">
-              {(provided) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="bg-white border border-gray-300 rounded p-4 shadow-md"
-                >
-                  {ongoingTasks.map((task, index) => (
-                    <Draggable
-                      key={task.id}
-                      draggableId={task.id}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="bg-white border border-gray-300 p-2 mb-2 rounded flex items-center justify-between cursor-move"
-                        >
-                          <span>{task.content}</span>
-                          <button
-                            onClick={() => handleCompleteTask(task.id)}
-                            className="text-xs px-2 py-1 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none"
+          <Droppable droppableId="ongoing" type="TASK">
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded"
+              >
+                <h2 className="text-xl font-semibold mb-4 text-center">
+                  Ongoing List
+                </h2>
+                <div className="bg-white border border-gray-300 rounded p-4 shadow-md">
+                  {todos
+                    .filter((task) => task.status === "Ongoing")
+                    .map((task, index) => (
+                      <Draggable
+                        key={task._id}
+                        draggableId={task._id}
+                        index={index}
+                        type="TASK"  
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="bg-white border border-gray-300 p-2 mb-2 rounded flex items-center justify-between cursor-move"
                           >
-                            Complete
-                          </button>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                            <span>{task.content}</span>
+                            <button
+                              onClick={() => handleDeleteTask(task._id)}
+                              className="text-xs px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
                   {provided.placeholder}
                 </div>
-              )}
-            </Droppable>
-          </div>
-          <div className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded">
-            <h2 className="text-xl font-semibold mb-4 text-center">Completed List</h2>
-            <Droppable droppableId="completed">
-              {(provided) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="bg-white border border-gray-300 rounded p-4 shadow-md"
-                >
-                  {completedTasks.map((task, index) => (
-                    <Draggable
-                      key={task.id}
-                      draggableId={task.id}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.droppableProps}
-                          {...provided.dragHandleProps}
-                          className="bg-white border border-gray-300 p-2 mb-2 rounded flex items-center justify-between cursor-move"
-                        >
-                          <span>{task.content}</span>
-                          <button
-                            onClick={() => handleDeleteProduct(task.id)}
-                            className="text-xs px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none"
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId="completed" type="TASK">
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className="w-full sm:w-1/2 lg:w-1/3 bg-gray-100 p-4 rounded"
+              >
+                <h2 className="text-xl font-semibold mb-4 text-center">
+                  Completed List
+                </h2>
+                <div className="bg-white border border-gray-300 rounded p-4 shadow-md">
+                  {todos
+                    .filter((task) => task.status === "Completed")
+                    .map((task, index) => (
+                      <Draggable
+                        key={task._id}
+                        draggableId={task._id}
+                        index={index}
+                        type="TASK" 
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="bg-white border border-gray-300 p-2 mb-2 rounded flex items-center justify-between cursor-move"
                           >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                            <span>{task.content}</span>
+                            <button
+                              onClick={() => handleDeleteTask(task._id)}
+                              className="text-xs px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
                   {provided.placeholder}
                 </div>
-              )}
-            </Droppable>
-          </div>
+              </div>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
       <ToastContainer position="bottom-right" autoClose={3000} />
