@@ -1,16 +1,15 @@
-// src/Task.jsx
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 const Task = ({ task, index }) => {
   return (
-    <Draggable draggableId={task.id} index={index}>
-      {(provided) => (
+    <Draggable draggableId={task._id} index={index}>
+      {(provided, snapshot) => (
         <div
+          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          className="task-item"
+          className={`task-item ${snapshot.isDragging ? "dragging" : ""}`}
         >
           {task.content}
         </div>
