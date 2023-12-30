@@ -12,7 +12,7 @@ const CreateTask = () => {
 
   const handleCreateTask = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5080/tasks", data);
+      const response = await axios.post("https://task-craft-server-side.vercel.app/tasks", data);
       console.log("Server Response", response.data);
 
       if(response.data){

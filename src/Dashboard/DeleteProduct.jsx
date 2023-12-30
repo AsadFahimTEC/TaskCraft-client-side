@@ -17,7 +17,7 @@ const DeleteProduct = ({ cart, setUpdated }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("confirmed");
-        fetch(`http://localhost:5080/tasks/${id}`, {
+        fetch(`https://task-craft-server-side.vercel.app/tasks/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

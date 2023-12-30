@@ -15,7 +15,7 @@ const UpdateProduct = () => {
   const [defaultValue, setDefaultValue] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5080/tasks/${id}`)
+    fetch(`https://task-craft-server-side.vercel.app/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => setDefaultValue(data[0]));
   }, [id]);
@@ -36,7 +36,7 @@ const UpdateProduct = () => {
     const product = {title, description, deadline, priority};
     console.log(product);
 
-    fetch(`http://localhost:5080/tasks/${id}`, {
+    fetch(`https://task-craft-server-side.vercel.app/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
